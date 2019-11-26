@@ -213,15 +213,7 @@ def read_requirements(path,
 
 
 def install_requires(conda_format=False):
-    if conda_format:
-        return read_requirements(
-            'etc/requirements_dev.txt.out',
-            conda_format=True,
-            filter_names={req.split(' ')[0] for req in
-                          read_requirements('etc/requirements.in',
-                                            conda_format=True)})
-
-    return read_requirements('etc/requirements.in')
+    return read_requirements('etc/requirements.in', conda_format=conda_format)
 
 
 def extras_requires(conda_format=False):
