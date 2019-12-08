@@ -14,11 +14,6 @@ from zipline.utils.cli import Date, Timestamp
 from zipline.utils.run_algo import _run, load_extensions
 from zipline.extensions import create_args
 
-try:
-    __IPYTHON__
-except NameError:
-    __IPYTHON__ = False
-
 
 @click.group()
 @click.option(
@@ -95,7 +90,7 @@ def ipython_only(option):
         A decorator that correctly applies the argument even when not
         using IPython mode.
     """
-    if __IPYTHON__:
+    if hasattr(__builtins__, '__IPYTHON__'):
         return option
 
     argname = extract_option_object(option).name
